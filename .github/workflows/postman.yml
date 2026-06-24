@@ -1,12 +1,9 @@
 name: Run Postman Tests
-
 on:
   push:
     branches: [main]
-
 permissions:
   write-all
-
 jobs:
   newman-run:
     runs-on: ubuntu-latest
@@ -16,7 +13,7 @@ jobs:
       - name: Install Newman and Allure Reporter
         run: |
           npm install -g newman
-          npm install -g newman-reporter-allure@1.1.4
+          npm install -g newman-reporter-allure
 
       - name: Run Postman Collection with Allure Reporter
         run: |
@@ -27,9 +24,11 @@ jobs:
 
       - name: Install Allure CLI
         run: |
+          sudo apt-get update
           sudo apt-get install -y default-jre
-          npm install -g allure-commandline
-          echo "$(npm root -g)/.bin" >> $GITHUB_PATH
+          curl -o allure-2.27.0.tgz -L https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.tgz
+          sudo tar -zxvf allure-2.27.0.tgz -C /opt/
+          sudo ln -s /opt/allure-2.27.0/bin/allure /usr/local/bin/allure
 
       - name: Load Allure Report History
         uses: actions/checkout@v4
