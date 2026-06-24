@@ -18,6 +18,7 @@ jobs:
       - name: Run Postman Collection with Allure Reporter
         run: |
           newman run Postman-Collection/Postman-Collection.json \
+            -e Postman-Collection/Restful.postman_environment.json \
             -r allure,cli \
             --reporter-allure-export allure-results
         continue-on-error: true
