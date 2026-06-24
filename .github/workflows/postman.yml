@@ -20,7 +20,7 @@ jobs:
 
       - name: Run Postman Collection with Allure Reporter
         run: |
-          newman run postman/Postman-Collection.json -r allure --reporter-allure-export allure-results
+          newman run Postman-Collection/Postman-Collection.json -r allure --reporter-allure-export allure-results
 
       - name: Install Allure CLI
         run: |
