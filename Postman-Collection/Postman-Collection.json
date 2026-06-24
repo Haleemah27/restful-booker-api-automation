@@ -125,154 +125,6 @@
 			"name": "Booking",
 			"item": [
 				{
-					"name": "Get BookingIds",
-					"item": [
-						{
-							"name": "getBoookingIds",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "3a6757a0-ab46-43f4-a9d7-f2b25d3b6d94",
-										"exec": [
-											"const jsonData = pm.response.json()\r",
-											"\r",
-											"pm.test(\"Status code should be 200 OK\", function(){\r",
-											"    pm.response.to.have.status(200)\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Verify that booking IDs are returned\", function(){\r",
-											"    pm.expect(jsonData).to.not.have.property(\"bookingid\")\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Response is an array\", function(){\r",
-											"    pm.expect(jsonData).to.be.an('array')\r",
-											"})\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {},
-										"requests": {}
-									}
-								}
-							],
-							"id": "27fc7f10-c54d-4415-a5ba-9657bed47cd0",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": "{{baseUrl}}/booking"
-							},
-							"response": []
-						}
-					],
-					"id": "75636305-8f91-4038-b335-b772d1421c20"
-				},
-				{
-					"name": "Get Booking",
-					"item": [
-						{
-							"name": "getBooking",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "641bb654-4490-460c-bdf4-6854dd181377",
-										"exec": [
-											"const jsonData = pm.response.json()\r",
-											"\r",
-											"pm.test(\"Status code is 200\", function(){\r",
-											"    pm.response.to.have.status(200)\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Verify that booking details are returned\", function(){\r",
-											"    pm.expect(jsonData).to.have.property(\"firstname\")\r",
-											"    pm.expect(jsonData).to.have.property(\"lastname\")\r",
-											"    pm.expect(jsonData).to.have.property(\"totalprice\")\r",
-											"    pm.expect(jsonData).to.have.property(\"depositpaid\")\r",
-											"    pm.expect(jsonData).to.have.property(\"bookingdates\")\r",
-											"    pm.expect(jsonData).to.have.property(\"additionalneeds\")\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Verify booking dates are returned\", function(){\r",
-											"    pm.expect(jsonData.bookingdates).to.have.property(\"checkin\")\r",
-											"    pm.expect(jsonData.bookingdates).to.have.property(\"checkout\")\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Verify firstname is a string\", function(){\r",
-											"    pm.expect(jsonData.firstname).to.be.a(\"string\")\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Verify totalprice is a number\", function(){\r",
-											"    pm.expect(jsonData.totalprice).to.be.a(\"number\")\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Verify depositpaid is a boolean\", function(){\r",
-											"    pm.expect(jsonData.depositpaid).to.be.a(\"boolean\")\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Verify additionalneeds is a string\", function(){\r",
-											"    pm.expect(jsonData.additionalneeds).to.be.a(\"string\")\r",
-											"})"
-										],
-										"type": "text/javascript",
-										"packages": {},
-										"requests": {}
-									}
-								}
-							],
-							"id": "3ff05e08-6f47-4b28-9105-4aebdc7afe8f",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": "{{baseUrl}}/booking/1"
-							},
-							"response": []
-						},
-						{
-							"name": "getBooking-invalidID",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "0c67f6a6-47c4-4174-aa56-5ae3de6ea825",
-										"exec": [
-											"const jsonData = pm.response.text()\r",
-											"\r",
-											"pm.test(\"Status code is 404 Not Found\", function(){\r",
-											"    pm.response.to.have.status(404)\r",
-											"})\r",
-											"\r",
-											"pm.test(\"Verify error message is returned\", function(){\r",
-											"    pm.expect(jsonData).to.include(\"Not Found\")\r",
-											"})"
-										],
-										"type": "text/javascript",
-										"packages": {},
-										"requests": {}
-									}
-								}
-							],
-							"id": "3d9c9a57-ab58-4621-8fd5-5c9d4dbf977e",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": "https://restful-booker.herokuapp.com/booking/xxxx"
-							},
-							"response": []
-						}
-					],
-					"id": "6fb324d3-9250-4f73-ad18-211bce16987b"
-				},
-				{
 					"name": "Create Booking",
 					"item": [
 						{
@@ -290,6 +142,11 @@
 											"    pm.response.to.have.status(200)\r",
 											"})\r",
 											"\r",
+											"pm.test(\"Verify booking dates are returned\", function(){\r",
+											"    pm.expect(jsonData.booking.bookingdates).to.have.property(\"checkin\")\r",
+											"    pm.expect(jsonData.booking.bookingdates).to.have.property(\"checkout\")\r",
+											"})\r",
+											"\r",
 											"pm.test(\"Verify that booking details are returned\", function(){\r",
 											"    pm.expect(jsonData.booking).to.have.property(\"firstname\")\r",
 											"    pm.expect(jsonData.booking).to.have.property(\"lastname\")\r",
@@ -299,10 +156,7 @@
 											"    pm.expect(jsonData.booking).to.have.property(\"additionalneeds\")\r",
 											"})\r",
 											"\r",
-											"pm.test(\"Verify booking dates are returned\", function(){\r",
-											"    pm.expect(jsonData.booking.bookingdates).to.have.property(\"checkin\")\r",
-											"    pm.expect(jsonData.booking.bookingdates).to.have.property(\"checkout\")\r",
-											"})\r",
+											"\r",
 											"\r",
 											"pm.test(\"Verify bookingid is returned\", function(){\r",
 											"    pm.expect(jsonData).to.have.property(\"bookingid\")\r",
@@ -517,6 +371,154 @@
 						}
 					],
 					"id": "95812997-d47f-4f0c-8ffc-2a12fdebb413"
+				},
+				{
+					"name": "Get BookingIds",
+					"item": [
+						{
+							"name": "getBoookingIds",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3a6757a0-ab46-43f4-a9d7-f2b25d3b6d94",
+										"exec": [
+											"const jsonData = pm.response.json()\r",
+											"\r",
+											"pm.test(\"Status code should be 200 OK\", function(){\r",
+											"    pm.response.to.have.status(200)\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Verify that booking IDs are returned\", function(){\r",
+											"    pm.expect(jsonData).to.not.have.property(\"bookingid\")\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Response is an array\", function(){\r",
+											"    pm.expect(jsonData).to.be.an('array')\r",
+											"})\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "27fc7f10-c54d-4415-a5ba-9657bed47cd0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/booking"
+							},
+							"response": []
+						}
+					],
+					"id": "75636305-8f91-4038-b335-b772d1421c20"
+				},
+				{
+					"name": "Get Booking",
+					"item": [
+						{
+							"name": "getBooking",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "641bb654-4490-460c-bdf4-6854dd181377",
+										"exec": [
+											"const jsonData = pm.response.json()\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function(){\r",
+											"    pm.response.to.have.status(200)\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Verify that booking details are returned\", function(){\r",
+											"    pm.expect(jsonData).to.have.property(\"firstname\")\r",
+											"    pm.expect(jsonData).to.have.property(\"lastname\")\r",
+											"    pm.expect(jsonData).to.have.property(\"totalprice\")\r",
+											"    pm.expect(jsonData).to.have.property(\"depositpaid\")\r",
+											"    pm.expect(jsonData).to.have.property(\"bookingdates\")\r",
+											"    pm.expect(jsonData).to.have.property(\"additionalneeds\")\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Verify booking dates are returned\", function(){\r",
+											"    pm.expect(jsonData.bookingdates).to.have.property(\"checkin\")\r",
+											"    pm.expect(jsonData.bookingdates).to.have.property(\"checkout\")\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Verify firstname is a string\", function(){\r",
+											"    pm.expect(jsonData.firstname).to.be.a(\"string\")\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Verify totalprice is a number\", function(){\r",
+											"    pm.expect(jsonData.totalprice).to.be.a(\"number\")\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Verify depositpaid is a boolean\", function(){\r",
+											"    pm.expect(jsonData.depositpaid).to.be.a(\"boolean\")\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Verify additionalneeds is a string\", function(){\r",
+											"    pm.expect(jsonData.additionalneeds).to.be.a(\"string\")\r",
+											"})"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "3ff05e08-6f47-4b28-9105-4aebdc7afe8f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/booking/1"
+							},
+							"response": []
+						},
+						{
+							"name": "getBooking-invalidID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0c67f6a6-47c4-4174-aa56-5ae3de6ea825",
+										"exec": [
+											"const jsonData = pm.response.text()\r",
+											"\r",
+											"pm.test(\"Status code is 404 Not Found\", function(){\r",
+											"    pm.response.to.have.status(404)\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Verify error message is returned\", function(){\r",
+											"    pm.expect(jsonData).to.include(\"Not Found\")\r",
+											"})"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "3d9c9a57-ab58-4621-8fd5-5c9d4dbf977e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "https://restful-booker.herokuapp.com/booking/xxxx"
+							},
+							"response": []
+						}
+					],
+					"id": "6fb324d3-9250-4f73-ad18-211bce16987b"
 				},
 				{
 					"name": "Update Booking",
