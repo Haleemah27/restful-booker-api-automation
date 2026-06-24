@@ -9,20 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Install Newman and Allure Reporter
         run: |
           npm install -g newman
           npm install -g newman-reporter-allure
-
       - name: Run Postman Collection with Allure Reporter
         run: |
           newman run Postman-Collection/Postman-Collection.json \
-            -e Postman-Collection/Restful.postman_environment.json \
-            -r allure,cli \
-            --reporter-allure-export allure-results
-        continue-on-error: true
-
+          --environment Restful.postman_environment.json \
+          --reporters cli,allure \
+          --reporter-allure-export allure-results
       - name: Install Allure CLI
         run: |
           sudo apt-get update
@@ -30,7 +26,6 @@ jobs:
           curl -o allure-2.27.0.tgz -L https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.tgz
           sudo tar -zxvf allure-2.27.0.tgz -C /opt/
           sudo ln -s /opt/allure-2.27.0/bin/allure /usr/local/bin/allure
-
       - name: Load Allure Report History
         uses: actions/checkout@v4
         if: always()
@@ -38,12 +33,10 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
-
       - name: Generate Allure Report
         if: always()
         run: |
           allure generate allure-results --clean -o allure-history
-
       - name: Publish Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         if: always()
