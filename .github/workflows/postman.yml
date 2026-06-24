@@ -19,9 +19,6 @@ jobs:
           --environment Restful.postman_environment.json \
           --reporters cli,allure \
           --reporter-allure-export allure-results
-      - name: Install Allure CLI
-        run: |
-          npm install -g allure-commandline --save-dev
       - name: Load Allure Report History
         uses: actions/checkout@v4
         if: always()
@@ -32,7 +29,8 @@ jobs:
       - name: Generate Allure Report
         if: always()
         run: |
-          allure generate allure-results --clean -o allure-history
+          npm install -g allure-commandline
+          npx allure generate allure-results --clean -o allure-history
       - name: Publish Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         if: always()
