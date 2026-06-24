@@ -1,2 +1,2 @@
-"BROKEN","CATEGORY","FAILED","PASSED","SKIPPED","UNKNOWN"
-"12","Test defects","0","0","0","0"
+"Category","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"Test defects","0","12","0","0","0"
