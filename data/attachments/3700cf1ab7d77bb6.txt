@@ -1,0 +1,11 @@
+{
+    "firstname" : "Newell",
+    "lastname" : "Morissette",
+    "totalprice" : "rrrr",
+    "depositpaid" : false,
+    "bookingdates" : {
+        "checkin" : "2018-01-01",
+        "checkout" : "2019-01-01"
+    },
+    "additionalneeds" : "Breakfast"
+}
