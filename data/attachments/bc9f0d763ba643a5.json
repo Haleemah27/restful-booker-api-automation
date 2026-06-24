@@ -1,0 +1,11 @@
+{
+    "Content-Type": "application/json",
+    "Cookie": "token={{token}}",
+    "User-Agent": "PostmanRuntime/7.39.1",
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "ef7fe864-2cf9-4a58-84c3-ff3d50ad7b3c",
+    "Host": "{{baseurl}}",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive"
+}
