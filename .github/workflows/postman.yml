@@ -16,11 +16,13 @@ jobs:
       - name: Install Newman and Allure Reporter
         run: |
           npm install -g newman
-          npm install -g newman-reporter-allure
+          npm install -g newman-reporter-allure@1.1.4
 
       - name: Run Postman Collection with Allure Reporter
         run: |
-          newman run Postman-Collection/Postman-Collection.json -r allure --reporter-allure-export allure-results
+          newman run Postman-Collection/Postman-Collection.json \
+            -r allure,cli \
+            --reporter-allure-export allure-results
         continue-on-error: true
 
       - name: Install Allure CLI
