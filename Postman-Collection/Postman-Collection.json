@@ -17,7 +17,7 @@
 								"id": "e760c48f-e683-4796-8903-e108a0281363",
 								"exec": [
 									"const jsonData = pm.response.json()\r",
-									"pm.collectionVariables.set(\"token\", jsonData.token)\r",
+									"pm.environment.set(\"token\", jsonData.token)\r",
 									"\r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -285,7 +285,7 @@
 										"exec": [
 											"const jsonData = pm.response.json()\r",
 											"\r",
-											"pm.collectionVariables.set(\"bookingid\", jsonData.bookingid)\r",
+											"pm.environment.set(\"bookingid\", jsonData.bookingid)\r",
 											"pm.test(\"Status code is 200\", function(){\r",
 											"    pm.response.to.have.status(200)\r",
 											"})\r",
@@ -837,7 +837,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "d256f7c6-e39f-4c95-865a-29ef118a02f4",
+				"id": "c6a9851e-b7ca-466f-b23e-685c6e9aee2e",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -849,7 +849,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "0746a245-122d-4ed8-913b-81098ce66d36",
+				"id": "befbec44-4915-47bc-9b83-abd9a0fa2b41",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -857,20 +857,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseUrl",
-			"value": ""
-		},
-		{
-			"key": "token",
-			"value": ""
-		},
-		{
-			"key": "bookingid",
-			"value": ""
 		}
 	]
 }
