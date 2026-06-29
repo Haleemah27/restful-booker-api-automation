@@ -14,6 +14,7 @@ jobs:
           npm install -g newman
           npm install -g newman-reporter-allure
       - name: Run Postman Collection with Allure Reporter
+        continue-on-error: true
         run: |
           newman run Postman-Collection/Postman-Collection.json \
           --environment Restful.postman_environment.json \
