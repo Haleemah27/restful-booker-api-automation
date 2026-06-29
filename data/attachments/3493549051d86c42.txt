@@ -1,0 +1,1 @@
+{"bookingid":4391,"booking":{"firstname":"Benedict","lastname":"Rice","totalprice":null,"depositpaid":false,"bookingdates":{"checkin":"2018-01-01","checkout":"2019-01-01"},"additionalneeds":"Breakfast"}}
